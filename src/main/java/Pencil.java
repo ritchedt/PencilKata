@@ -14,8 +14,8 @@ public class Pencil {
     }
 
     public enum Durability {
-        LOW (100),
-        HIGH(1000);
+        LOW (20),
+        HIGH(40);
 
         private int maxCharLengthBeforeGoingDull;
 
@@ -30,7 +30,9 @@ public class Pencil {
 
 
     public void write(Paper paper, String message){
-        paper.write(message);
+        for(int charIndex = 0; charIndex < message.length() && charIndex < this.durabilityOfPencil; charIndex++){
+            paper.write(message.charAt(charIndex));
+        }
     }
 
     public int getPointDurability(){

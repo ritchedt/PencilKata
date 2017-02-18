@@ -8,7 +8,7 @@ public class Paper extends Pencil {
     public Paper(){
     }
 
-    public void write(String content){
+    public void write(char content){
         paperContent += content;
     }
 
