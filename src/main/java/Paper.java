@@ -1,7 +1,7 @@
 /**
  * Created by dritcher on 2/18/17.
  */
-public class Paper {
+public class Paper extends Pencil {
 
     String paperContent = "";
 

@@ -17,9 +17,26 @@ public class PencilTest {
     }
 
     @Test
+    public void paperShouldNotHaveAnythingWritten(){
+        assertEquals(paper.getContent(), "");
+    }
+
+    @Test
     public void pencilShouldWriteMyNameIsDrewOnPaper(){
         pencil.write(paper, "My name is Drew");
 
         assertEquals(paper.getContent(), "My name is Drew");
+    }
+
+    @Test
+    public void pencilShouldHaveALowPointDurability(){
+        Pencil pencilWithLowDurability = new Pencil(Pencil.Durability.LOW);
+        assertEquals(pencilWithLowDurability.getPointDurability(), 100);
+    }
+
+    @Test
+    public void pencilShouldHaveAHighPointDurability(){
+        Pencil pencilWithHighDurability = new Pencil(Pencil.Durability.HIGH);
+        assertEquals(pencilWithHighDurability.getPointDurability(), 1000);
     }
 }
