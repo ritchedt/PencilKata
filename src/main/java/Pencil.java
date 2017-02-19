@@ -3,17 +3,25 @@
  */
 public class Pencil {
 
-    private int durabilityOfPencil;
-    private Durability durability;
+    private int allowableCharsWrittenAmount;
+    private int allowableSharpenAmount;
+    private final Durability durability;
+    private final Length length;
 
     public Pencil(){
         durability = Durability.LOW;
-        durabilityOfPencil = durability.getMaxCharLength();
+        length = Length.SHORT;
+
+        allowableCharsWrittenAmount = durability.getMaxCharLength();
+        allowableSharpenAmount = length.getMaxSharpenAmount();
     }
 
-    public Pencil(Durability durability){
+    public Pencil(Durability durability, Length length){
         this.durability = durability;
-        durabilityOfPencil = this.durability.getMaxCharLength();
+        this.length = length;
+
+        allowableCharsWrittenAmount = this.durability.getMaxCharLength();
+        allowableSharpenAmount = this.length.getMaxSharpenAmount();
     }
 
     public enum Durability {
@@ -31,19 +39,41 @@ public class Pencil {
         }
     }
 
+    public enum Length {
+        SHORT(1),
+        LONG(3);
 
-    public void write(Paper paper, String message){
-        for(int charIndex = 0; charIndex < message.length() && durabilityOfPencil > 0; charIndex++){
-            paper.write(message.charAt(charIndex));
-            durabilityOfPencil--;
+        private int maxTimesPencilCanBeSharpened;
+
+        Length(int maxTimesPencilCanBeSharpened){
+            this.maxTimesPencilCanBeSharpened = maxTimesPencilCanBeSharpened;
+        }
+
+        private int getMaxSharpenAmount(){
+            return this.maxTimesPencilCanBeSharpened;
         }
     }
 
-    public int getPointDurability(){
-        return durabilityOfPencil;
+
+    public void write(Paper paper, String message){
+        for(int charIndex = 0; charIndex < message.length() && allowableCharsWrittenAmount > 0; charIndex++){
+            paper.write(message.charAt(charIndex));
+            allowableCharsWrittenAmount--;
+        }
+    }
+
+    public int getAllowableCharsWrittenAmount(){
+        return allowableCharsWrittenAmount;
+    }
+
+    public int getAllowableSharpenAmount(){
+        return allowableSharpenAmount;
     }
 
     public void sharpen(){
-        durabilityOfPencil = durability.getMaxCharLength();
+        if(allowableSharpenAmount > 0) {
+            allowableCharsWrittenAmount = durability.getMaxCharLength();
+            allowableSharpenAmount--;
+        }
     }
 }

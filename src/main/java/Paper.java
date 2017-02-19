@@ -3,7 +3,7 @@
  */
 public class Paper extends Pencil {
 
-    String paperContent = "";
+    private String paperContent = "";
 
     public Paper(){
     }
