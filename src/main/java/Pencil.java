@@ -3,14 +3,17 @@
  */
 public class Pencil {
 
-    int durabilityOfPencil;
+    private int durabilityOfPencil;
+    private Durability durability;
 
     public Pencil(){
-        this.durabilityOfPencil = Durability.LOW.getMaxCharLength();
+        durability = Durability.LOW;
+        durabilityOfPencil = durability.getMaxCharLength();
     }
 
     public Pencil(Durability durability){
-        this.durabilityOfPencil = durability.getMaxCharLength();
+        this.durability = durability;
+        durabilityOfPencil = this.durability.getMaxCharLength();
     }
 
     public enum Durability {
@@ -30,12 +33,17 @@ public class Pencil {
 
 
     public void write(Paper paper, String message){
-        for(int charIndex = 0; charIndex < message.length() && charIndex < this.durabilityOfPencil; charIndex++){
+        for(int charIndex = 0; charIndex < message.length() && durabilityOfPencil > 0; charIndex++){
             paper.write(message.charAt(charIndex));
+            durabilityOfPencil--;
         }
     }
 
     public int getPointDurability(){
         return durabilityOfPencil;
+    }
+
+    public void sharpen(){
+        durabilityOfPencil = durability.getMaxCharLength();
     }
 }

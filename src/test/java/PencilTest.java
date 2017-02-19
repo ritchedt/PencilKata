@@ -67,9 +67,20 @@ public class PencilTest {
 
     @Test
     public void pencilShouldNotBeAbleToWriteAMessageContainingMoreThan40CharactersWithHighPointDurability(){
-        String textToWrite = "ThisMessageHasMoreThanFiftyCharsInLength!";
+        String textToWrite = "ThisMessageHasMoreThanFiftyCharsInOverallLength!";
         Pencil pencilWithHighDurability = new Pencil(Pencil.Durability.HIGH);
         pencilWithHighDurability.write(paper, textToWrite);
-        assertEquals("ThisMessageHasMoreThanFiftyCharsInLength", paper.getContent());
+        assertEquals("ThisMessageHasMoreThanFiftyCharsInOveral", paper.getContent());
     }
+
+    @Test
+    public void pencilShouldRegainItsInitialPointDurabilitiyWhenItIsSharpneed(){
+        String textToWrite = "ThisHasTwentyChars!!";
+        pencil.write(paper, textToWrite);
+        pencil.sharpen();
+        textToWrite = "AndCanWriteMore";
+        pencil.write(paper, textToWrite);
+        assertEquals("ThisHasTwentyChars!!AndCanWriteMore", paper.getContent());
+    }
+
 }
