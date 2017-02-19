@@ -7,8 +7,8 @@ import static org.junit.Assert.*;
 
 public class PencilTest {
 
-    Pencil pencil;
-    Paper paper;
+    private Pencil pencil;
+    private Paper paper;
 
     @Before
     public void setUp(){
@@ -164,8 +164,16 @@ public class PencilTest {
 
         textToWrite = "ThisShouldNotAppear";
         longPencil.write(paper, textToWrite);
-        
+
         assertEquals("ThisHasTwentyChars!!AndCanWriteEvenMore!AndCanWriteEvenMore!AndCanWriteEvenMore!", paper.getContent());
     }
+
+    @Test
+    public void pencilShouldNotExahustAnyGraphiteDurabilityWhenIncludingSpaces(){
+        String textToWrite = "This H a s Twe nt y Cha  rs ! !";
+        pencil.write(paper, textToWrite);
+        assertEquals(textToWrite, paper.getContent());
+    }
+
 
 }

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52e2e642-9caa-456f-bd85-cdcfac4bb4d5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Paper.java" afterPath="$PROJECT_DIR$/src/main/java/Paper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Pencil.java" afterPath="$PROJECT_DIR$/src/main/java/Pencil.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/PencilTest.java" afterPath="$PROJECT_DIR$/src/test/java/PencilTest.java" />
     </list>
@@ -24,8 +24,8 @@
       <file leaf-file-name="PencilTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/PencilTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="689">
-              <caret line="166" column="8" lean-forward="false" selection-start-line="166" selection-start-column="8" selection-end-line="166" selection-end-column="8" />
+            <state relative-caret-position="297">
+              <caret line="176" column="0" lean-forward="true" selection-start-line="176" selection-start-column="0" selection-end-line="176" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -34,8 +34,8 @@
       <file leaf-file-name="Pencil.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Pencil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="75" column="34" lean-forward="false" selection-start-line="75" selection-start-column="12" selection-end-line="75" selection-end-column="34" />
+            <state relative-caret-position="269">
+              <caret line="63" column="13" lean-forward="true" selection-start-line="63" selection-start-column="13" selection-end-line="63" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -199,7 +199,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.19401042" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Java" />
   </component>
   <component name="RunManager" selected="JUnit.PencilTest">
     <configuration default="false" name="PencilTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
@@ -506,34 +506,34 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="PencilTest - 2017.02.19 at 16h 22m 02s.xml">
+    <history-entry file="PencilTest - 2017.02.19 at 17h 17m 54s.xml">
       <configuration name="PencilTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PencilTest - 2017.02.19 at 16h 24m 55s.xml">
+    <history-entry file="PencilTest - 2017.02.19 at 17h 20m 44s.xml">
       <configuration name="PencilTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PencilTest - 2017.02.19 at 16h 30m 06s.xml">
+    <history-entry file="PencilTest - 2017.02.19 at 17h 21m 35s.xml">
       <configuration name="PencilTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PencilTest - 2017.02.19 at 16h 44m 28s.xml">
+    <history-entry file="PencilTest - 2017.02.19 at 17h 22m 10s.xml">
       <configuration name="PencilTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PencilTest - 2017.02.19 at 16h 46m 48s.xml">
+    <history-entry file="PencilTest - 2017.02.19 at 17h 22m 35s.xml">
       <configuration name="PencilTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PencilTest - 2017.02.19 at 16h 49m 00s.xml">
+    <history-entry file="PencilTest - 2017.02.19 at 17h 23m 16s.xml">
       <configuration name="PencilTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PencilTest - 2017.02.19 at 16h 52m 32s.xml">
+    <history-entry file="PencilTest - 2017.02.19 at 17h 24m 08s.xml">
       <configuration name="PencilTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PencilTest - 2017.02.19 at 16h 56m 43s.xml">
+    <history-entry file="PencilTest - 2017.02.19 at 17h 24m 42s.xml">
       <configuration name="PencilTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PencilTest - 2017.02.19 at 16h 59m 28s.xml">
+    <history-entry file="PencilTest - 2017.02.19 at 17h 25m 22s.xml">
       <configuration name="PencilTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PencilTest - 2017.02.19 at 17h 00m 51s.xml">
+    <history-entry file="PencilTest - 2017.02.19 at 17h 26m 16s.xml">
       <configuration name="PencilTest" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -551,7 +551,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28928047" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28928047" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -743,16 +743,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Pencil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="75" column="34" lean-forward="false" selection-start-line="75" selection-start-column="12" selection-end-line="75" selection-end-column="34" />
+        <state relative-caret-position="269">
+          <caret line="63" column="13" lean-forward="true" selection-start-line="63" selection-start-column="13" selection-end-line="63" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/PencilTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="689">
-          <caret line="166" column="8" lean-forward="false" selection-start-line="166" selection-start-column="8" selection-end-line="166" selection-end-column="8" />
+        <state relative-caret-position="297">
+          <caret line="176" column="0" lean-forward="true" selection-start-line="176" selection-start-column="0" selection-end-line="176" selection-end-column="0" />
           <folding />
         </state>
       </provider>

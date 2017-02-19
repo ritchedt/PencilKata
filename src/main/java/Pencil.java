@@ -58,7 +58,10 @@ public class Pencil {
     public void write(Paper paper, String message){
         for(int charIndex = 0; charIndex < message.length() && allowableCharsWrittenAmount > 0; charIndex++){
             paper.write(message.charAt(charIndex));
-            allowableCharsWrittenAmount--;
+
+            if(!Character.isWhitespace(message.charAt(charIndex))) {
+                allowableCharsWrittenAmount--;
+            }
         }
     }
 
