@@ -189,5 +189,24 @@ public class PencilTest {
         assertTrue(paper.getContent().equals("THIS HAS more th"));
     }
 
+    @Test
+    public void pencilShouldBeAbleToEraseCoolFromPaperContainingVeryCoolCool(){
+        String textToWrite = "Very Cool Cool";
+        pencil.write(paper, textToWrite);
+        pencil.erase(paper, "Cool");
+        assertTrue(paper.getContent().equals("Very Cool     "));
+    }
+
+    @Test
+    public void pencilShouldBeAbleToEraseTheFirstChuckThenTheSecondChuckFromPaperContainingWoodChuckChuckIfAWoodchuckCouldChuckWood(){
+        String textToWrite = "woodchuck chuck if a woodchuck could chuck wood";
+        Pencil longPencil = new Pencil(Durability.HIGH, Length.LONG);
+        longPencil.write(paper, textToWrite);
+
+        longPencil.erase(paper, "chuck");
+        longPencil.erase(paper, "chuck");
+        assertTrue(paper.getContent().equals("woodchuck chuck if a wood      could       wood"));
+    }
+
 
 }

@@ -15,4 +15,11 @@ public class Paper extends Pencil {
     public String getContent(){
         return paperContent;
     }
+
+    public void erase(String content){
+        int indexOfLastOccuranceOfWord = getContent().lastIndexOf(content);
+
+        paperContent = new StringBuilder(getContent()).replace(indexOfLastOccuranceOfWord,
+                indexOfLastOccuranceOfWord + content.length(), new String(new char[content.length()]).replace("\0", " ")).toString();
+    }
 }

@@ -52,4 +52,8 @@ public class Pencil {
             allowableSharpenAmount--;
         }
     }
+
+    public void erase(Paper paper, String lastOccuranceOfWrittenWord){
+        paper.erase(lastOccuranceOfWrittenWord);
+    }
 }
