@@ -2,16 +2,18 @@
  * Created by dritcher on 2/20/17.
  */
 public enum Durability {
-    LOW (20),
-    HIGH(40);
+    PENCIL_LOW(20),
+    PENCIL_HIGH(40),
+    ERASER_LOW(2),
+    ERASER_HIGH(4);
 
-    private int maxCharLengthBeforeGoingDull;
+    private int maxDurabilityLength;
 
-    Durability(int maxCharLengthBeforeGoingDull){
-        this.maxCharLengthBeforeGoingDull = maxCharLengthBeforeGoingDull;
+    Durability(int maxDurabilityLength){
+        this.maxDurabilityLength = maxDurabilityLength;
     }
 
-    public int getMaxCharLength(){
-        return this.maxCharLengthBeforeGoingDull;
+    public int getMaxDurabilityLength(){
+        return this.maxDurabilityLength;
     }
 }

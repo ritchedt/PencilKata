@@ -9,11 +9,13 @@ public class PencilTest {
 
     private Pencil pencil;
     private Paper paper;
+    private Eraser eraser;
 
     @Before
     public void setUp(){
         pencil = new Pencil();
         paper = new Paper();
+        eraser = new Eraser();
     }
 
     @Test
@@ -31,20 +33,20 @@ public class PencilTest {
 
     @Test
     public void pencilShouldHaveALowPointDurability(){
-        Pencil pencilWithLowDurability = new Pencil(Durability.LOW, Length.SHORT);
+        Pencil pencilWithLowDurability = new Pencil(Durability.PENCIL_LOW, Length.SHORT);
         assertEquals(20, pencilWithLowDurability.getAllowableCharsWrittenAmount());
     }
 
     @Test
     public void pencilShouldHaveAHighPointDurability(){
-        Pencil pencilWithHighDurability = new Pencil(Durability.HIGH, Length.SHORT);
+        Pencil pencilWithHighDurability = new Pencil(Durability.PENCIL_HIGH, Length.SHORT);
         assertEquals(40, pencilWithHighDurability.getAllowableCharsWrittenAmount());
     }
 
     @Test
     public void pencilShouldBeAbleToWriteAMessageContaining20CharactersWithLowPointDurability(){
         String textToWrite = "thishastwentychars!!";
-        Pencil pencilWithLowDurability = new Pencil(Durability.LOW, Length.SHORT);
+        Pencil pencilWithLowDurability = new Pencil(Durability.PENCIL_LOW, Length.SHORT);
         pencilWithLowDurability.write(paper, textToWrite);
         assertTrue(paper.getContent().equals(textToWrite));
     }
@@ -52,7 +54,7 @@ public class PencilTest {
     @Test
     public void pencilShouldNotBeAbleToWriteAMessageContainingMoreThan20CharactersWithLowPointDurability(){
         String textToWrite = "thishasmorethantwentychars!!";
-        Pencil pencilWithLowDurability = new Pencil(Durability.LOW, Length.SHORT);
+        Pencil pencilWithLowDurability = new Pencil(Durability.PENCIL_LOW, Length.SHORT);
         pencilWithLowDurability.write(paper, textToWrite);
         assertTrue(paper.getContent().equals("thishasmorethantwent"));
     }
@@ -60,7 +62,7 @@ public class PencilTest {
     @Test
     public void pencilShouldBeAbleToWriteAMessageContaining40CharactersWithHighPointDurability(){
         String textToWrite = "thismessagehasexactlyfiftycharsinlength!";
-        Pencil pencilWithHighDurability = new Pencil(Durability.HIGH, Length.SHORT);
+        Pencil pencilWithHighDurability = new Pencil(Durability.PENCIL_HIGH, Length.SHORT);
         pencilWithHighDurability.write(paper, textToWrite);
         assertTrue(paper.getContent().equals(textToWrite));
     }
@@ -68,7 +70,7 @@ public class PencilTest {
     @Test
     public void pencilShouldNotBeAbleToWriteAMessageContainingMoreThan40CharactersWithHighPointDurability(){
         String textToWrite = "thismessagehasmorethanfiftycharsinoveralllength!";
-        Pencil pencilWithHighDurability = new Pencil(Durability.HIGH, Length.SHORT);
+        Pencil pencilWithHighDurability = new Pencil(Durability.PENCIL_HIGH, Length.SHORT);
         pencilWithHighDurability.write(paper, textToWrite);
         assertTrue(paper.getContent().equals("thismessagehasmorethanfiftycharsinoveral"));
     }
@@ -85,19 +87,19 @@ public class PencilTest {
 
     @Test
     public void pencilShouldHaveAShortLength(){
-        Pencil shortPencil = new Pencil(Durability.LOW, Length.SHORT);
+        Pencil shortPencil = new Pencil(Durability.PENCIL_LOW, Length.SHORT);
         assertEquals(1, shortPencil.getAllowableSharpenAmount());
     }
 
     @Test
     public void pencilShouldHaveALongLength(){
-        Pencil longPencil = new Pencil(Durability.HIGH, Length.LONG);
+        Pencil longPencil = new Pencil(Durability.PENCIL_HIGH, Length.LONG);
         assertEquals(3, longPencil.getAllowableSharpenAmount());
     }
 
     @Test
     public void pencilOfShortLengthShouldOnlyBeAbleToBeSharpenedOnce(){
-        Pencil shortPencil = new Pencil(Durability.LOW, Length.SHORT);
+        Pencil shortPencil = new Pencil(Durability.PENCIL_LOW, Length.SHORT);
         String textToWrite = "thishastwentychars!!";
         shortPencil.write(paper, textToWrite);
         shortPencil.sharpen();
@@ -109,7 +111,7 @@ public class PencilTest {
 
     @Test
     public void pencilOfShortLengthShouldNotBeAbleToBeSharpenedMoreThanOnce(){
-        Pencil shortPencil = new Pencil(Durability.LOW, Length.SHORT);
+        Pencil shortPencil = new Pencil(Durability.PENCIL_LOW, Length.SHORT);
         String textToWrite = "thishastwentychars!!";
         shortPencil.write(paper, textToWrite);
         shortPencil.sharpen();
@@ -125,7 +127,7 @@ public class PencilTest {
 
     @Test
     public void pencilOfLongLengthShouldOnlyBeAbleToBeSharpenedThreeTimes(){
-        Pencil longPencil = new Pencil(Durability.LOW, Length.LONG);
+        Pencil longPencil = new Pencil(Durability.PENCIL_LOW, Length.LONG);
         String textToWrite = "thishastwentychars!!";
         longPencil.write(paper, textToWrite);
         longPencil.sharpen();
@@ -145,7 +147,7 @@ public class PencilTest {
 
     @Test
     public void pencilOfLongLengthShouldNotBeAbleToBeSharpenedMoreThanThreeTimes(){
-        Pencil longPencil = new Pencil(Durability.LOW, Length.LONG);
+        Pencil longPencil = new Pencil(Durability.PENCIL_LOW, Length.LONG);
         String textToWrite = "thishastwentychars!!";
         longPencil.write(paper, textToWrite);
         longPencil.sharpen();
@@ -193,19 +195,61 @@ public class PencilTest {
     public void pencilShouldBeAbleToEraseCoolFromPaperContainingVeryCoolCool(){
         String textToWrite = "Very Cool Cool";
         pencil.write(paper, textToWrite);
-        pencil.erase(paper, "Cool");
+        eraser.erase(paper, "Cool");
         assertTrue(paper.getContent().equals("Very Cool     "));
     }
 
     @Test
     public void pencilShouldBeAbleToEraseTheFirstChuckThenTheSecondChuckFromPaperContainingWoodChuckChuckIfAWoodchuckCouldChuckWood(){
         String textToWrite = "woodchuck chuck if a woodchuck could chuck wood";
-        Pencil longPencil = new Pencil(Durability.HIGH, Length.LONG);
+        Pencil longPencil = new Pencil(Durability.PENCIL_HIGH, Length.LONG);
         longPencil.write(paper, textToWrite);
 
-        longPencil.erase(paper, "chuck");
-        longPencil.erase(paper, "chuck");
+        eraser.erase(paper, "chuck");
+        eraser.erase(paper, "chuck");
         assertTrue(paper.getContent().equals("woodchuck chuck if a wood      could       wood"));
+    }
+
+    @Test
+    public void eraserShouldHaveALowEraserDurability(){
+        assertEquals(2, eraser.getAllowableEraseAmount());
+    }
+
+    @Test
+    public void eraserShouldHaveAHighEraserDurability(){
+        Eraser eraserWithHighDurability = new Eraser(Durability.ERASER_HIGH);
+        assertEquals(4, eraserWithHighDurability.getAllowableEraseAmount());
+    }
+
+    @Test
+    public void eraserWithHighEraserDurablitilyShouldBeAbleToEraseUpToFourTimes(){
+        Pencil pencilWithHighDurability = new Pencil(Durability.PENCIL_HIGH, Length.SHORT);
+        Eraser eraserWithHighDurability = new Eraser(Durability.ERASER_HIGH);
+        String textToWrite = "repeat1 repeat2 repeat3 repeat4 repeat5";
+        pencilWithHighDurability.write(paper, textToWrite);
+
+        eraserWithHighDurability.erase(paper, "repeat5");
+        eraserWithHighDurability.erase(paper, "repeat4");
+        eraserWithHighDurability.erase(paper, "repeat3");
+        eraserWithHighDurability.erase(paper, "repeat2");
+
+        assertTrue(paper.getContent().equals("repeat1                                "));
+    }
+
+    @Test
+    public void eraserWithHighEraserDurablitilyShouldNotBeAbleToEraseMoreThanFourTimes(){
+        Pencil pencilWithHighDurability = new Pencil(Durability.PENCIL_HIGH, Length.SHORT);
+        Eraser eraserWithHighDurability = new Eraser(Durability.ERASER_HIGH);
+        String textToWrite = "repeat1 repeat2 repeat3 repeat4 repeat5";
+        pencilWithHighDurability.write(paper, textToWrite);
+
+        eraserWithHighDurability.erase(paper, "repeat5");
+        eraserWithHighDurability.erase(paper, "repeat4");
+        eraserWithHighDurability.erase(paper, "repeat3");
+        eraserWithHighDurability.erase(paper, "repeat2");
+        eraserWithHighDurability.erase(paper, "repeat1");
+
+        assertTrue(paper.getContent().equals("repeat1                                "));
     }
 
 

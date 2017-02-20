@@ -5,9 +5,6 @@ public class Paper extends Pencil {
 
     private String paperContent = "";
 
-    public Paper(){
-    }
-
     public void write(char content){
         paperContent += content;
     }

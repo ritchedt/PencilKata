@@ -9,10 +9,10 @@ public class Pencil {
     private final Length length;
 
     public Pencil(){
-        durability = Durability.LOW;
+        durability = Durability.PENCIL_LOW;
         length = Length.SHORT;
 
-        allowableCharsWrittenAmount = durability.getMaxCharLength();
+        allowableCharsWrittenAmount = durability.getMaxDurabilityLength();
         allowableSharpenAmount = length.getMaxSharpenAmount();
     }
 
@@ -20,7 +20,7 @@ public class Pencil {
         this.durability = durability;
         this.length = length;
 
-        allowableCharsWrittenAmount = this.durability.getMaxCharLength();
+        allowableCharsWrittenAmount = this.durability.getMaxDurabilityLength();
         allowableSharpenAmount = this.length.getMaxSharpenAmount();
     }
 
@@ -48,12 +48,8 @@ public class Pencil {
 
     public void sharpen(){
         if(allowableSharpenAmount > 0) {
-            allowableCharsWrittenAmount = durability.getMaxCharLength();
+            allowableCharsWrittenAmount = durability.getMaxDurabilityLength();
             allowableSharpenAmount--;
         }
-    }
-
-    public void erase(Paper paper, String lastOccuranceOfWrittenWord){
-        paper.erase(lastOccuranceOfWrittenWord);
     }
 }
