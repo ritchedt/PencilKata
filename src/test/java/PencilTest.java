@@ -18,161 +18,175 @@ public class PencilTest {
 
     @Test
     public void paperShouldNotHaveAnythingWritten(){
-        assertEquals(paper.getContent(), "");
+        assertTrue(paper.getContent().equals(""));
     }
 
     @Test
     public void pencilShouldWriteMyNameIsDrewOnPaper(){
-        String textToWrite = "My name is Drew";
+        String textToWrite = "my name is drew";
         pencil.write(paper, textToWrite);
 
-        assertEquals(textToWrite, paper.getContent());
+        assertTrue(paper.getContent().equals(textToWrite));
     }
 
     @Test
     public void pencilShouldHaveALowPointDurability(){
-        Pencil pencilWithLowDurability = new Pencil(Pencil.Durability.LOW, Pencil.Length.SHORT);
+        Pencil pencilWithLowDurability = new Pencil(Durability.LOW, Length.SHORT);
         assertEquals(20, pencilWithLowDurability.getAllowableCharsWrittenAmount());
     }
 
     @Test
     public void pencilShouldHaveAHighPointDurability(){
-        Pencil pencilWithHighDurability = new Pencil(Pencil.Durability.HIGH, Pencil.Length.SHORT);
+        Pencil pencilWithHighDurability = new Pencil(Durability.HIGH, Length.SHORT);
         assertEquals(40, pencilWithHighDurability.getAllowableCharsWrittenAmount());
     }
 
     @Test
     public void pencilShouldBeAbleToWriteAMessageContaining20CharactersWithLowPointDurability(){
-        String textToWrite = "ThisHasTwentyChars!!";
-        Pencil pencilWithLowDurability = new Pencil(Pencil.Durability.LOW, Pencil.Length.SHORT);
+        String textToWrite = "thishastwentychars!!";
+        Pencil pencilWithLowDurability = new Pencil(Durability.LOW, Length.SHORT);
         pencilWithLowDurability.write(paper, textToWrite);
-        assertEquals(textToWrite, paper.getContent());
+        assertTrue(paper.getContent().equals(textToWrite));
     }
 
     @Test
     public void pencilShouldNotBeAbleToWriteAMessageContainingMoreThan20CharactersWithLowPointDurability(){
-        String textToWrite = "ThisHasMoreThanTwentyChars!!";
-        Pencil pencilWithLowDurability = new Pencil(Pencil.Durability.LOW, Pencil.Length.SHORT);
+        String textToWrite = "thishasmorethantwentychars!!";
+        Pencil pencilWithLowDurability = new Pencil(Durability.LOW, Length.SHORT);
         pencilWithLowDurability.write(paper, textToWrite);
-        assertEquals("ThisHasMoreThanTwent", paper.getContent());
+        assertTrue(paper.getContent().equals("thishasmorethantwent"));
     }
 
     @Test
     public void pencilShouldBeAbleToWriteAMessageContaining40CharactersWithHighPointDurability(){
-        String textToWrite = "ThisMessageHasExactlyFiftyCharsInLength!";
-        Pencil pencilWithHighDurability = new Pencil(Pencil.Durability.HIGH, Pencil.Length.SHORT);
+        String textToWrite = "thismessagehasexactlyfiftycharsinlength!";
+        Pencil pencilWithHighDurability = new Pencil(Durability.HIGH, Length.SHORT);
         pencilWithHighDurability.write(paper, textToWrite);
-        assertEquals(textToWrite, paper.getContent());
+        assertTrue(paper.getContent().equals(textToWrite));
     }
 
     @Test
     public void pencilShouldNotBeAbleToWriteAMessageContainingMoreThan40CharactersWithHighPointDurability(){
-        String textToWrite = "ThisMessageHasMoreThanFiftyCharsInOverallLength!";
-        Pencil pencilWithHighDurability = new Pencil(Pencil.Durability.HIGH, Pencil.Length.SHORT);
+        String textToWrite = "thismessagehasmorethanfiftycharsinoveralllength!";
+        Pencil pencilWithHighDurability = new Pencil(Durability.HIGH, Length.SHORT);
         pencilWithHighDurability.write(paper, textToWrite);
-        assertEquals("ThisMessageHasMoreThanFiftyCharsInOveral", paper.getContent());
+        assertTrue(paper.getContent().equals("thismessagehasmorethanfiftycharsinoveral"));
     }
 
     @Test
     public void pencilShouldRegainItsInitialPointDurabilitiyWhenItIsSharpneed(){
-        String textToWrite = "ThisHasTwentyChars!!";
+        String textToWrite = "thishastwentychars!!";
         pencil.write(paper, textToWrite);
         pencil.sharpen();
-        textToWrite = "AndCanWriteMore";
+        textToWrite = "andcanwritemore";
         pencil.write(paper, textToWrite);
-        assertEquals("ThisHasTwentyChars!!AndCanWriteMore", paper.getContent());
+        assertTrue(paper.getContent().equals("thishastwentychars!!andcanwritemore"));
     }
 
     @Test
     public void pencilShouldHaveAShortLength(){
-        Pencil shortPencil = new Pencil(Pencil.Durability.LOW, Pencil.Length.SHORT);
+        Pencil shortPencil = new Pencil(Durability.LOW, Length.SHORT);
         assertEquals(1, shortPencil.getAllowableSharpenAmount());
     }
 
     @Test
     public void pencilShouldHaveALongLength(){
-        Pencil longPencil = new Pencil(Pencil.Durability.HIGH, Pencil.Length.LONG);
+        Pencil longPencil = new Pencil(Durability.HIGH, Length.LONG);
         assertEquals(3, longPencil.getAllowableSharpenAmount());
     }
 
     @Test
     public void pencilOfShortLengthShouldOnlyBeAbleToBeSharpenedOnce(){
-        Pencil shortPencil = new Pencil(Pencil.Durability.LOW, Pencil.Length.SHORT);
-        String textToWrite = "ThisHasTwentyChars!!";
+        Pencil shortPencil = new Pencil(Durability.LOW, Length.SHORT);
+        String textToWrite = "thishastwentychars!!";
         shortPencil.write(paper, textToWrite);
         shortPencil.sharpen();
 
-        textToWrite = "AndCanWriteEvenMore!";
+        textToWrite = "andcanwriteevenmore!";
         shortPencil.write(paper, textToWrite);
-        assertEquals("ThisHasTwentyChars!!AndCanWriteEvenMore!", paper.getContent());
+        assertTrue(paper.getContent().equals("thishastwentychars!!andcanwriteevenmore!"));
     }
 
     @Test
     public void pencilOfShortLengthShouldNotBeAbleToBeSharpenedMoreThanOnce(){
-        Pencil shortPencil = new Pencil(Pencil.Durability.LOW, Pencil.Length.SHORT);
-        String textToWrite = "ThisHasTwentyChars!!";
+        Pencil shortPencil = new Pencil(Durability.LOW, Length.SHORT);
+        String textToWrite = "thishastwentychars!!";
         shortPencil.write(paper, textToWrite);
         shortPencil.sharpen();
 
-        textToWrite = "AndCanWriteEvenMore!";
+        textToWrite = "andcanwriteevenmore!";
         shortPencil.write(paper, textToWrite);
-        textToWrite = "ThisShouldNotAppear";
+        textToWrite = "thisshouldnotappear";
 
         shortPencil.sharpen();
         shortPencil.write(paper, textToWrite);
-        assertEquals("ThisHasTwentyChars!!AndCanWriteEvenMore!", paper.getContent());
+        assertTrue(paper.getContent().equals("thishastwentychars!!andcanwriteevenmore!"));
     }
 
     @Test
     public void pencilOfLongLengthShouldOnlyBeAbleToBeSharpenedThreeTimes(){
-        Pencil longPencil = new Pencil(Pencil.Durability.LOW, Pencil.Length.LONG);
-        String textToWrite = "ThisHasTwentyChars!!";
+        Pencil longPencil = new Pencil(Durability.LOW, Length.LONG);
+        String textToWrite = "thishastwentychars!!";
         longPencil.write(paper, textToWrite);
         longPencil.sharpen();
 
-        textToWrite = "AndCanWriteEvenMore!";
+        textToWrite = "andcanwriteevenmore!";
         longPencil.write(paper, textToWrite);
         longPencil.sharpen();
 
-        textToWrite = "AndCanWriteEvenMore!";
+        textToWrite = "andcanwriteevenmore!";
         longPencil.write(paper, textToWrite);
         longPencil.sharpen();
 
-        textToWrite = "AndCanWriteEvenMore!";
+        textToWrite = "andcanwriteevenmore!";
         longPencil.write(paper, textToWrite);
-        assertEquals("ThisHasTwentyChars!!AndCanWriteEvenMore!AndCanWriteEvenMore!AndCanWriteEvenMore!", paper.getContent());
+        assertTrue(paper.getContent().equals("thishastwentychars!!andcanwriteevenmore!andcanwriteevenmore!andcanwriteevenmore!"));
     }
 
     @Test
     public void pencilOfLongLengthShouldNotBeAbleToBeSharpenedMoreThanThreeTimes(){
-        Pencil longPencil = new Pencil(Pencil.Durability.LOW, Pencil.Length.LONG);
-        String textToWrite = "ThisHasTwentyChars!!";
+        Pencil longPencil = new Pencil(Durability.LOW, Length.LONG);
+        String textToWrite = "thishastwentychars!!";
         longPencil.write(paper, textToWrite);
         longPencil.sharpen();
 
-        textToWrite = "AndCanWriteEvenMore!";
+        textToWrite = "andcanwriteevenmore!";
         longPencil.write(paper, textToWrite);
         longPencil.sharpen();
 
-        textToWrite = "AndCanWriteEvenMore!";
+        textToWrite = "andcanwriteevenmore!";
         longPencil.write(paper, textToWrite);
         longPencil.sharpen();
 
-        textToWrite = "AndCanWriteEvenMore!";
+        textToWrite = "andcanwriteevenmore!";
         longPencil.write(paper, textToWrite);
         longPencil.sharpen();
 
-        textToWrite = "ThisShouldNotAppear";
+        textToWrite = "thisshouldnotappear";
         longPencil.write(paper, textToWrite);
 
-        assertEquals("ThisHasTwentyChars!!AndCanWriteEvenMore!AndCanWriteEvenMore!AndCanWriteEvenMore!", paper.getContent());
+        assertTrue(paper.getContent().equals("thishastwentychars!!andcanwriteevenmore!andcanwriteevenmore!andcanwriteevenmore!"));
     }
 
     @Test
     public void pencilShouldNotExahustAnyGraphiteDurabilityWhenIncludingSpaces(){
-        String textToWrite = "This H a s Twe nt y Cha  rs ! !";
+        String textToWrite = "this h a s twe nt y cha  rs ! !";
         pencil.write(paper, textToWrite);
-        assertEquals(textToWrite, paper.getContent());
+        assertTrue(paper.getContent().equals(textToWrite));
+    }
+
+    @Test
+    public void pencilShouldBeAbleToWriteAMessageContainingTenLowerCaseCharactersAndFiveUpperCaseCharactersWithLowPointDurability(){
+        String textToWrite = "This Has Twenty";
+        pencil.write(paper, textToWrite);
+        assertTrue(paper.getContent().equals(textToWrite));
+    }
+
+    @Test
+    public void pencilShouldNotBeAbleToWriteAMessageContainingFiveteenLowerCaseCharactersAndTenUpperCaseCharactersWithLowPointDurability(){
+        String textToWrite = "THIS HAS more than TWEnty chars!!";
+        pencil.write(paper, textToWrite);
+        assertTrue(paper.getContent().equals("THIS HAS more th"));
     }
 
 
