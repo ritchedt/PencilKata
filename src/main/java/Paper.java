@@ -1,7 +1,7 @@
 /**
  * Created by dritcher on 2/18/17.
  */
-public class Paper extends Pencil {
+public class Paper {
 
     private int indexOfMostRecentErasedEntry = 0;
     private int lengthOfMostRecentErasedEntry = 0;

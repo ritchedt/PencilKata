@@ -1,15 +1,13 @@
 /**
  * Created by dritcher on 2/20/17.
  */
-public enum Durability {
-    PENCIL_LOW(20),
-    PENCIL_HIGH(40),
-    ERASER_LOW(2),
-    ERASER_HIGH(4);
+public enum PencilDurability {
+    LOW(20),
+    HIGH(40);
 
     private int maxDurabilityLength;
 
-    Durability(int maxDurabilityLength){
+    PencilDurability(int maxDurabilityLength){
         this.maxDurabilityLength = maxDurabilityLength;
     }
 

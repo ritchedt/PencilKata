@@ -1,17 +1,17 @@
 /**
  * Created by dritcher on 2/20/17.
  */
-public class Eraser extends Pencil {
+public class Eraser {
 
     private int allowableEraseAmount;
-    private final Durability durability;
+    private final EraserDurability durability;
 
     public Eraser(){
-        durability = Durability.ERASER_LOW;
+        durability = EraserDurability.LOW;
         allowableEraseAmount = durability.getMaxDurabilityLength();
     }
 
-    public Eraser(Durability durability){
+    public Eraser(EraserDurability durability){
         this.durability = durability;
         allowableEraseAmount = this.durability.getMaxDurabilityLength();
     }

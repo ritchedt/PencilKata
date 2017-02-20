@@ -5,23 +5,23 @@ public class Pencil {
 
     private int allowableCharsWrittenAmount;
     private int allowableSharpenAmount;
-    private final Durability durability;
+    private final PencilDurability pencilDurability;
     private final Length length;
     private static final int UPPER_CASE_CHARS_AMOUNT = 2;
 
     public Pencil(){
-        durability = Durability.PENCIL_LOW;
+        pencilDurability = PencilDurability.LOW;
         length = Length.SHORT;
 
-        allowableCharsWrittenAmount = durability.getMaxDurabilityLength();
+        allowableCharsWrittenAmount = pencilDurability.getMaxDurabilityLength();
         allowableSharpenAmount = length.getMaxSharpenAmount();
     }
 
-    public Pencil(Durability durability, Length length){
-        this.durability = durability;
+    public Pencil(PencilDurability pencilDurability, Length length){
+        this.pencilDurability = pencilDurability;
         this.length = length;
 
-        allowableCharsWrittenAmount = this.durability.getMaxDurabilityLength();
+        allowableCharsWrittenAmount = this.pencilDurability.getMaxDurabilityLength();
         allowableSharpenAmount = this.length.getMaxSharpenAmount();
     }
 
@@ -61,7 +61,7 @@ public class Pencil {
 
     public void sharpen(){
         if(allowableSharpenAmount > 0) {
-            allowableCharsWrittenAmount = durability.getMaxDurabilityLength();
+            allowableCharsWrittenAmount = pencilDurability.getMaxDurabilityLength();
             allowableSharpenAmount--;
         }
     }
