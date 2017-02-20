@@ -23,3 +23,5 @@ hs_err_pid*
 src/main/resources/
 target/generated-sources/
 target/generated-test-sources/
+.idea/
+PencilKata.iml
