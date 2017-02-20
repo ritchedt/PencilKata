@@ -252,5 +252,16 @@ public class PencilTest {
         assertTrue(paper.getContent().equals("repeat1                                "));
     }
 
+    @Test
+    public void previouslyErasedWordOrangeFromPaperShouldBeAppleWhenEditIsAppliedToPaperContent(){
+        Pencil pencilWithHighDurability = new Pencil(Durability.PENCIL_HIGH, Length.SHORT);
+        String textToWrite = "An orange a day keeps the doctor away";
+        pencilWithHighDurability.write(paper, textToWrite);
+
+        eraser.erase(paper, "orange");
+        pencil.editFromMostRecentErasedEntry(paper, "apple");
+        assertTrue(paper.getContent().equals("An apple a day keeps the doctor away"));
+    }
+
 
 }

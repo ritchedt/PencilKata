@@ -7,6 +7,7 @@ public class Pencil {
     private int allowableSharpenAmount;
     private final Durability durability;
     private final Length length;
+    private static final int UPPER_CASE_CHARS_AMOUNT = 2;
 
     public Pencil(){
         durability = Durability.PENCIL_LOW;
@@ -24,17 +25,29 @@ public class Pencil {
         allowableSharpenAmount = this.length.getMaxSharpenAmount();
     }
 
+    private void reduceAllowableChars(String message, int charIndex){
+        if(!Character.isWhitespace(message.charAt(charIndex))) {
+            if(Character.isUpperCase(message.charAt(charIndex))) {
+                allowableCharsWrittenAmount = allowableCharsWrittenAmount - UPPER_CASE_CHARS_AMOUNT;
+            }else{
+                allowableCharsWrittenAmount--;
+            }
+        }
+    }
+
     public void write(Paper paper, String message){
         for(int charIndex = 0; charIndex < message.length() && allowableCharsWrittenAmount > 0; charIndex++){
             paper.write(message.charAt(charIndex));
+            reduceAllowableChars(message, charIndex);
+        }
+    }
 
-            if(!Character.isWhitespace(message.charAt(charIndex))) {
-                if(Character.isUpperCase(message.charAt(charIndex))) {
-                    allowableCharsWrittenAmount = allowableCharsWrittenAmount - 2;
-                }else{
-                    allowableCharsWrittenAmount--;
-                }
-            }
+    public void editFromMostRecentErasedEntry(Paper paper, String editedMessage){
+        paper.removeEmptySpaceFromErasing();
+
+        for(int charIndex = 0; charIndex < editedMessage.length() && allowableCharsWrittenAmount > 0; charIndex++){
+            paper.editFromMostRecentErasedEntry(editedMessage.charAt(charIndex));
+            reduceAllowableChars(editedMessage, charIndex);
         }
     }
 
