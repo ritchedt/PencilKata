@@ -34,13 +34,13 @@ public class PencilTest {
     @Test
     public void pencilShouldHaveALowPointDurability(){
         Pencil pencilWithLowDurability = new Pencil(PencilDurability.LOW, Length.SHORT);
-        assertEquals(20, pencilWithLowDurability.getAllowableCharsWrittenAmount());
+        assertEquals(20, pencilWithLowDurability.getRemainingCharacters());
     }
 
     @Test
     public void pencilShouldHaveAHighPointDurability(){
         Pencil pencilWithHighDurability = new Pencil(PencilDurability.HIGH, Length.SHORT);
-        assertEquals(40, pencilWithHighDurability.getAllowableCharsWrittenAmount());
+        assertEquals(40, pencilWithHighDurability.getRemainingCharacters());
     }
 
     @Test
@@ -88,13 +88,13 @@ public class PencilTest {
     @Test
     public void pencilShouldHaveAShortLength(){
         Pencil shortPencil = new Pencil(PencilDurability.LOW, Length.SHORT);
-        assertEquals(1, shortPencil.getAllowableSharpenAmount());
+        assertEquals(1, shortPencil.getRemainingSharpenAbility());
     }
 
     @Test
     public void pencilShouldHaveALongLength(){
         Pencil longPencil = new Pencil(PencilDurability.HIGH, Length.LONG);
-        assertEquals(3, longPencil.getAllowableSharpenAmount());
+        assertEquals(3, longPencil.getRemainingSharpenAbility());
     }
 
     @Test
@@ -212,13 +212,13 @@ public class PencilTest {
 
     @Test
     public void eraserShouldHaveALowEraserDurability(){
-        assertEquals(2, eraser.getAllowableEraseAmount());
+        assertEquals(2, eraser.getRemainingEraseAmount());
     }
 
     @Test
     public void eraserShouldHaveAHighEraserDurability(){
         Eraser eraserWithHighDurability = new Eraser(EraserDurability.HIGH);
-        assertEquals(4, eraserWithHighDurability.getAllowableEraseAmount());
+        assertEquals(4, eraserWithHighDurability.getRemainingEraseAmount());
     }
 
     @Test
@@ -261,6 +261,8 @@ public class PencilTest {
         eraser.erase(paper, "orange");
         pencil.editFromMostRecentErasedEntry(paper, "apple");
         assertTrue(paper.getContent().equals("An apple a day keeps the doctor away"));
+        //assertTrue("Actual: " + paper.getContent(), paper.getContent().equals("An {1.2:apple} a day keeps the doctor away"));
+        //If the word you're replacing is smaller than what was previouly erased, then it would use more graphite
     }
 
 

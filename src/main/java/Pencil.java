@@ -3,8 +3,8 @@
  */
 public class Pencil {
 
-    private int allowableCharsWrittenAmount;
-    private int allowableSharpenAmount;
+    private int remainingCharacters;
+    private int remainingSharpenAbility;
     private final PencilDurability pencilDurability;
     private final Length length;
     private static final int UPPER_CASE_CHARS_AMOUNT = 2;
@@ -13,30 +13,30 @@ public class Pencil {
         pencilDurability = PencilDurability.LOW;
         length = Length.SHORT;
 
-        allowableCharsWrittenAmount = pencilDurability.getMaxDurabilityLength();
-        allowableSharpenAmount = length.getMaxSharpenAmount();
+        remainingCharacters = pencilDurability.getMaxDurabilityLength();
+        remainingSharpenAbility = length.getMaxSharpenAmount();
     }
 
     public Pencil(PencilDurability pencilDurability, Length length){
         this.pencilDurability = pencilDurability;
         this.length = length;
 
-        allowableCharsWrittenAmount = this.pencilDurability.getMaxDurabilityLength();
-        allowableSharpenAmount = this.length.getMaxSharpenAmount();
+        remainingCharacters = this.pencilDurability.getMaxDurabilityLength();
+        remainingSharpenAbility = this.length.getMaxSharpenAmount();
     }
 
     private void reduceAllowableChars(String message, int charIndex){
         if(!Character.isWhitespace(message.charAt(charIndex))) {
             if(Character.isUpperCase(message.charAt(charIndex))) {
-                allowableCharsWrittenAmount = allowableCharsWrittenAmount - UPPER_CASE_CHARS_AMOUNT;
+                remainingCharacters = remainingCharacters - UPPER_CASE_CHARS_AMOUNT;
             }else{
-                allowableCharsWrittenAmount--;
+                remainingCharacters--;
             }
         }
     }
 
     public void write(Paper paper, String message){
-        for(int charIndex = 0; charIndex < message.length() && allowableCharsWrittenAmount > 0; charIndex++){
+        for(int charIndex = 0; charIndex < message.length() && remainingCharacters > 0; charIndex++){
             paper.write(message.charAt(charIndex));
             reduceAllowableChars(message, charIndex);
         }
@@ -45,24 +45,24 @@ public class Pencil {
     public void editFromMostRecentErasedEntry(Paper paper, String editedMessage){
         paper.removeEmptySpaceFromErasing();
 
-        for(int charIndex = 0; charIndex < editedMessage.length() && allowableCharsWrittenAmount > 0; charIndex++){
+        for(int charIndex = 0; charIndex < editedMessage.length() && remainingCharacters > 0; charIndex++){
             paper.editFromMostRecentErasedEntry(editedMessage.charAt(charIndex));
             reduceAllowableChars(editedMessage, charIndex);
         }
     }
 
-    public int getAllowableCharsWrittenAmount(){
-        return allowableCharsWrittenAmount;
+    public int getRemainingCharacters(){
+        return remainingCharacters;
     }
 
-    public int getAllowableSharpenAmount(){
-        return allowableSharpenAmount;
+    public int getRemainingSharpenAbility(){
+        return remainingSharpenAbility;
     }
 
     public void sharpen(){
-        if(allowableSharpenAmount > 0) {
-            allowableCharsWrittenAmount = pencilDurability.getMaxDurabilityLength();
-            allowableSharpenAmount--;
+        if(remainingSharpenAbility > 0) {
+            remainingCharacters = pencilDurability.getMaxDurabilityLength();
+            remainingSharpenAbility--;
         }
     }
 }

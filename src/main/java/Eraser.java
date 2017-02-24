@@ -3,27 +3,27 @@
  */
 public class Eraser {
 
-    private int allowableEraseAmount;
+    private int remainingEraseAmount;
     private final EraserDurability durability;
 
     public Eraser(){
         durability = EraserDurability.LOW;
-        allowableEraseAmount = durability.getMaxDurabilityLength();
+        remainingEraseAmount = durability.getMaxDurabilityLength();
     }
 
     public Eraser(EraserDurability durability){
         this.durability = durability;
-        allowableEraseAmount = this.durability.getMaxDurabilityLength();
+        remainingEraseAmount = this.durability.getMaxDurabilityLength();
     }
 
     public void erase(Paper paper, String lastOccuranceOfWrittenWord){
-        if(allowableEraseAmount > 0) {
+        if(remainingEraseAmount > 0) {
             paper.erase(lastOccuranceOfWrittenWord);
-            allowableEraseAmount--;
+            remainingEraseAmount--;
         }
     }
 
-    public int getAllowableEraseAmount(){
-        return allowableEraseAmount;
+    public int getRemainingEraseAmount(){
+        return remainingEraseAmount;
     }
 }
