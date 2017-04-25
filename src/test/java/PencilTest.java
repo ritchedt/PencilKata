@@ -1,6 +1,7 @@
 /**
  * Created by dritcher on 2/18/17.
  */
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -10,12 +11,22 @@ public class PencilTest {
     private Pencil pencil;
     private Paper paper;
     private Eraser eraser;
+    private String textToWrite;
 
     @Before
     public void setUp(){
         pencil = new Pencil();
         paper = new Paper();
         eraser = new Eraser();
+        textToWrite = "";
+    }
+
+    @After
+    public void tearDown(){
+        pencil = null;
+        paper = null;
+        eraser = null;
+        textToWrite = null;
     }
 
     @Test
@@ -25,7 +36,7 @@ public class PencilTest {
 
     @Test
     public void pencilShouldWriteMyNameIsDrewOnPaper(){
-        String textToWrite = "my name is drew";
+        textToWrite = "my name is drew";
         pencil.write(paper, textToWrite);
 
         assertTrue(paper.getContent().equals(textToWrite));
@@ -33,8 +44,7 @@ public class PencilTest {
 
     @Test
     public void pencilShouldHaveALowPointDurability(){
-        Pencil pencilWithLowDurability = new Pencil(PencilDurability.LOW, Length.SHORT);
-        assertEquals(20, pencilWithLowDurability.getRemainingCharacters());
+        assertEquals(20, pencil.getRemainingCharacters());
     }
 
     @Test
@@ -45,23 +55,21 @@ public class PencilTest {
 
     @Test
     public void pencilShouldBeAbleToWriteAMessageContaining20CharactersWithLowPointDurability(){
-        String textToWrite = "thishastwentychars!!";
-        Pencil pencilWithLowDurability = new Pencil(PencilDurability.LOW, Length.SHORT);
-        pencilWithLowDurability.write(paper, textToWrite);
+        textToWrite = "thishastwentychars!!";
+        pencil.write(paper, textToWrite);
         assertTrue(paper.getContent().equals(textToWrite));
     }
 
     @Test
     public void pencilShouldNotBeAbleToWriteAMessageContainingMoreThan20CharactersWithLowPointDurability(){
-        String textToWrite = "thishasmorethantwentychars!!";
-        Pencil pencilWithLowDurability = new Pencil(PencilDurability.LOW, Length.SHORT);
-        pencilWithLowDurability.write(paper, textToWrite);
+        textToWrite = "thishasmorethantwentychars!!";
+        pencil.write(paper, textToWrite);
         assertTrue(paper.getContent().equals("thishasmorethantwent"));
     }
 
     @Test
     public void pencilShouldBeAbleToWriteAMessageContaining40CharactersWithHighPointDurability(){
-        String textToWrite = "thismessagehasexactlyfiftycharsinlength!";
+        textToWrite = "thismessagehasexactlyfiftycharsinlength!";
         Pencil pencilWithHighDurability = new Pencil(PencilDurability.HIGH, Length.SHORT);
         pencilWithHighDurability.write(paper, textToWrite);
         assertTrue(paper.getContent().equals(textToWrite));
@@ -69,7 +77,7 @@ public class PencilTest {
 
     @Test
     public void pencilShouldNotBeAbleToWriteAMessageContainingMoreThan40CharactersWithHighPointDurability(){
-        String textToWrite = "thismessagehasmorethanfiftycharsinoveralllength!";
+        textToWrite = "thismessagehasmorethanfiftycharsinoveralllength!";
         Pencil pencilWithHighDurability = new Pencil(PencilDurability.HIGH, Length.SHORT);
         pencilWithHighDurability.write(paper, textToWrite);
         assertTrue(paper.getContent().equals("thismessagehasmorethanfiftycharsinoveral"));
@@ -77,7 +85,7 @@ public class PencilTest {
 
     @Test
     public void pencilShouldRegainItsInitialPointDurabilitiyWhenItIsSharpneed(){
-        String textToWrite = "thishastwentychars!!";
+        textToWrite = "thishastwentychars!!";
         pencil.write(paper, textToWrite);
         pencil.sharpen();
         textToWrite = "andcanwritemore";
@@ -87,8 +95,7 @@ public class PencilTest {
 
     @Test
     public void pencilShouldHaveAShortLength(){
-        Pencil shortPencil = new Pencil(PencilDurability.LOW, Length.SHORT);
-        assertEquals(1, shortPencil.getRemainingSharpenAbility());
+        assertEquals(1, pencil.getRemainingSharpenAbility());
     }
 
     @Test
@@ -99,36 +106,34 @@ public class PencilTest {
 
     @Test
     public void pencilOfShortLengthShouldOnlyBeAbleToBeSharpenedOnce(){
-        Pencil shortPencil = new Pencil(PencilDurability.LOW, Length.SHORT);
-        String textToWrite = "thishastwentychars!!";
-        shortPencil.write(paper, textToWrite);
-        shortPencil.sharpen();
+        textToWrite = "thishastwentychars!!";
+        pencil.write(paper, textToWrite);
+        pencil.sharpen();
 
         textToWrite = "andcanwriteevenmore!";
-        shortPencil.write(paper, textToWrite);
+        pencil.write(paper, textToWrite);
         assertTrue(paper.getContent().equals("thishastwentychars!!andcanwriteevenmore!"));
     }
 
     @Test
     public void pencilOfShortLengthShouldNotBeAbleToBeSharpenedMoreThanOnce(){
-        Pencil shortPencil = new Pencil(PencilDurability.LOW, Length.SHORT);
-        String textToWrite = "thishastwentychars!!";
-        shortPencil.write(paper, textToWrite);
-        shortPencil.sharpen();
+        textToWrite = "thishastwentychars!!";
+        pencil.write(paper, textToWrite);
+        pencil.sharpen();
 
         textToWrite = "andcanwriteevenmore!";
-        shortPencil.write(paper, textToWrite);
+        pencil.write(paper, textToWrite);
         textToWrite = "thisshouldnotappear";
 
-        shortPencil.sharpen();
-        shortPencil.write(paper, textToWrite);
+        pencil.sharpen();
+        pencil.write(paper, textToWrite);
         assertTrue(paper.getContent().equals("thishastwentychars!!andcanwriteevenmore!"));
     }
 
     @Test
     public void pencilOfLongLengthShouldOnlyBeAbleToBeSharpenedThreeTimes(){
         Pencil longPencil = new Pencil(PencilDurability.LOW, Length.LONG);
-        String textToWrite = "thishastwentychars!!";
+        textToWrite = "thishastwentychars!!";
         longPencil.write(paper, textToWrite);
         longPencil.sharpen();
 
@@ -148,7 +153,7 @@ public class PencilTest {
     @Test
     public void pencilOfLongLengthShouldNotBeAbleToBeSharpenedMoreThanThreeTimes(){
         Pencil longPencil = new Pencil(PencilDurability.LOW, Length.LONG);
-        String textToWrite = "thishastwentychars!!";
+        textToWrite = "thishastwentychars!!";
         longPencil.write(paper, textToWrite);
         longPencil.sharpen();
 
@@ -172,28 +177,28 @@ public class PencilTest {
 
     @Test
     public void pencilShouldNotExahustAnyGraphiteDurabilityWhenIncludingSpaces(){
-        String textToWrite = "this h a s twe nt y cha  rs ! !";
+        textToWrite = "this h a s twe nt y cha  rs ! !";
         pencil.write(paper, textToWrite);
         assertTrue(paper.getContent().equals(textToWrite));
     }
 
     @Test
     public void pencilShouldBeAbleToWriteAMessageContainingTenLowerCaseCharactersAndFiveUpperCaseCharactersWithLowPointDurability(){
-        String textToWrite = "This Has Twenty";
+        textToWrite = "This Has Twenty";
         pencil.write(paper, textToWrite);
         assertTrue(paper.getContent().equals(textToWrite));
     }
 
     @Test
     public void pencilShouldNotBeAbleToWriteAMessageContainingFiveteenLowerCaseCharactersAndTenUpperCaseCharactersWithLowPointDurability(){
-        String textToWrite = "THIS HAS more than TWEnty chars!!";
+        textToWrite = "THIS HAS more than TWEnty chars!!";
         pencil.write(paper, textToWrite);
         assertTrue(paper.getContent().equals("THIS HAS more th"));
     }
 
     @Test
     public void pencilShouldBeAbleToEraseCoolFromPaperContainingVeryCoolCool(){
-        String textToWrite = "Very Cool Cool";
+        textToWrite = "Very Cool Cool";
         pencil.write(paper, textToWrite);
         eraser.erase(paper, "Cool");
         assertTrue(paper.getContent().equals("Very Cool     "));
@@ -201,7 +206,7 @@ public class PencilTest {
 
     @Test
     public void pencilShouldBeAbleToEraseTheFirstChuckThenTheSecondChuckFromPaperContainingWoodChuckChuckIfAWoodchuckCouldChuckWood(){
-        String textToWrite = "woodchuck chuck if a woodchuck could chuck wood";
+        textToWrite = "woodchuck chuck if a woodchuck could chuck wood";
         Pencil longPencil = new Pencil(PencilDurability.HIGH, Length.LONG);
         longPencil.write(paper, textToWrite);
 
@@ -225,7 +230,7 @@ public class PencilTest {
     public void eraserWithHighEraserDurablitilyShouldBeAbleToEraseUpToFourTimes(){
         Pencil pencilWithHighDurability = new Pencil(PencilDurability.HIGH, Length.SHORT);
         Eraser eraserWithHighDurability = new Eraser(EraserDurability.HIGH);
-        String textToWrite = "repeat1 repeat2 repeat3 repeat4 repeat5";
+        textToWrite = "repeat1 repeat2 repeat3 repeat4 repeat5";
         pencilWithHighDurability.write(paper, textToWrite);
 
         eraserWithHighDurability.erase(paper, "repeat5");
@@ -240,7 +245,7 @@ public class PencilTest {
     public void eraserWithHighEraserDurablitilyShouldNotBeAbleToEraseMoreThanFourTimes(){
         Pencil pencilWithHighDurability = new Pencil(PencilDurability.HIGH, Length.SHORT);
         Eraser eraserWithHighDurability = new Eraser(EraserDurability.HIGH);
-        String textToWrite = "repeat1 repeat2 repeat3 repeat4 repeat5";
+        textToWrite = "repeat1 repeat2 repeat3 repeat4 repeat5";
         pencilWithHighDurability.write(paper, textToWrite);
 
         eraserWithHighDurability.erase(paper, "repeat5");
@@ -255,14 +260,12 @@ public class PencilTest {
     @Test
     public void previouslyErasedWordOrangeFromPaperShouldBeAppleWhenEditIsAppliedToPaperContent(){
         Pencil pencilWithHighDurability = new Pencil(PencilDurability.HIGH, Length.SHORT);
-        String textToWrite = "An orange a day keeps the doctor away";
+        textToWrite = "An orange a day keeps the doctor away";
         pencilWithHighDurability.write(paper, textToWrite);
 
         eraser.erase(paper, "orange");
         pencil.editFromMostRecentErasedEntry(paper, "apple");
         assertTrue(paper.getContent().equals("An apple a day keeps the doctor away"));
-        //assertTrue("Actual: " + paper.getContent(), paper.getContent().equals("An {1.2:apple} a day keeps the doctor away"));
-        //If the word you're replacing is smaller than what was previouly erased, then it would use more graphite
     }
 
 
