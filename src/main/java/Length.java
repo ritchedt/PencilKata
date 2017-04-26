@@ -7,7 +7,7 @@ public enum Length {
 
     private int maxTimesPencilCanBeSharpened;
 
-    Length(int maxTimesPencilCanBeSharpened){
+    Length(final int maxTimesPencilCanBeSharpened){
         this.maxTimesPencilCanBeSharpened = maxTimesPencilCanBeSharpened;
     }
 

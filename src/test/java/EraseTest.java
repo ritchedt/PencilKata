@@ -44,7 +44,7 @@ public class EraseTest {
 
         eraser.erase(paper, "chuck");
         eraser.erase(paper, "chuck");
-        
+
         assertTrue(paper.getContent().equals("woodchuck chuck if a wood      could       wood"));
     }
 

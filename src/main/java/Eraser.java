@@ -11,12 +11,12 @@ public class Eraser {
         remainingEraseAmount = durability.getMaxDurabilityLength();
     }
 
-    public Eraser(EraserDurability durability){
+    public Eraser(final EraserDurability durability){
         this.durability = durability;
         remainingEraseAmount = this.durability.getMaxDurabilityLength();
     }
 
-    public void erase(Paper paper, String lastOccuranceOfWrittenWord){
+    public void erase(final Paper paper, final String lastOccuranceOfWrittenWord){
         if(remainingEraseAmount > 0) {
             paper.erase(lastOccuranceOfWrittenWord);
             remainingEraseAmount--;

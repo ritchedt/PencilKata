@@ -7,11 +7,11 @@ public class Paper {
     private int lengthOfMostRecentErasedEntry = 0;
     private String paperContent = "";
 
-    public void write(char content){
+    public void write(final char content){
         paperContent += content;
     }
 
-    public void editFromMostRecentErasedEntry(char editedContent){
+    public void editFromMostRecentErasedEntry(final char editedContent){
         paperContent = paperContent.substring(0, indexOfMostRecentErasedEntry ) +
                 editedContent + paperContent.substring(indexOfMostRecentErasedEntry, paperContent.length());
 
@@ -22,7 +22,7 @@ public class Paper {
         return paperContent;
     }
 
-    public void erase(String content){
+    public void erase(final String content){
         int indexOfLastOccuranceOfWord = getContent().lastIndexOf(content);
 
         paperContent = new StringBuilder(getContent()).replace(indexOfLastOccuranceOfWord,

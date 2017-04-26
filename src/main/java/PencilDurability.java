@@ -7,7 +7,7 @@ public enum PencilDurability {
 
     private int maxDurabilityLength;
 
-    PencilDurability(int maxDurabilityLength){
+    PencilDurability(final int maxDurabilityLength){
         this.maxDurabilityLength = maxDurabilityLength;
     }
 

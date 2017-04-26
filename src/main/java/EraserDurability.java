@@ -7,7 +7,7 @@ public enum EraserDurability {
 
     private int maxDurabilityLength;
 
-    EraserDurability(int maxDurabilityLength){
+    EraserDurability(final int maxDurabilityLength){
         this.maxDurabilityLength = maxDurabilityLength;
     }
 
