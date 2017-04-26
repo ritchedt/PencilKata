@@ -11,7 +11,7 @@ public class Eraser {
         remainingEraseAmount = durability.getMaxDurabilityLength();
     }
 
-    public Eraser(final EraserDurability durability){
+    public Eraser(EraserDurability durability){
         this.durability = durability;
         remainingEraseAmount = this.durability.getMaxDurabilityLength();
     }

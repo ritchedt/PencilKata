@@ -16,7 +16,7 @@ public class Pencil {
         remainingSharpenAbility = length.getMaxSharpenAmount();
     }
 
-    public Pencil(final PencilDurability pencilDurability, final Length length){
+    public Pencil(PencilDurability pencilDurability, Length length){
         this.pencilDurability = pencilDurability;
         this.length = length;
 
